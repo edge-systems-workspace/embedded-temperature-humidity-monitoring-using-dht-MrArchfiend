@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <DHT.h>
 
 // Define sensor pin and type
 #define DHTPIN 2
@@ -6,15 +7,6 @@
 
 // Create DHT sensor object
 DHT dht(DHTPIN, DHTTYPE);
-
-#include <DHT.h>
-
-Serial.begin(9600);
-    dht.begin();
-
-    Serial.println("======================================");
-    Serial.println(" DHT11 Temperature & Humidity Monitor ");
-    Serial.println("======================================");
 
 void setup() {
 
