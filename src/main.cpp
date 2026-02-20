@@ -1,54 +1,54 @@
 #include <Arduino.h>
-/**
- * @file main.ino
- * @brief Embedded Temperature and Humidity Monitoring using DHT11
- * @author YOUR_NAME
- * @date YYYY-MM-DD
- *
- * @details
- * This program reads environmental data from the DHT11 sensor
- * and displays temperature and humidity values on Serial Monitor.
- * Students must complete the TODO sections.
- */
-
 #include <DHT.h>
 
-// TODO 1:
-// Define the DHT data pin (Use digital pin 2)
+// Define sensor pin and type
+#define DHTPIN 2
+#define DHTTYPE DHT11
 
-// TODO 2:
-// Define the DHT sensor type (DHT11)
-
-// TODO 3:
-// Create a DHT object using the defined pin and sensor type
+// Create DHT sensor object
+DHT dht(DHTPIN, DHTTYPE);
 
 void setup() {
 
-    // TODO 4:
-    // Initialize Serial communication (9600 baud rate)
+    Serial.begin(9600);
+    dht.begin();
 
-    // TODO 5:
-    // Initialize the DHT sensor
-
-    // TODO 6:
-    // Print a system initialization message
+    Serial.println("======================================");
+    Serial.println(" DHT11 Temperature & Humidity Monitor ");
+    Serial.println("======================================");
+}
 }
 
 void loop() {
 
-    // TODO 7:
-    // Read humidity value from sensor
+    // Delay between readings (DHT11 requires ~1 second interval)
+    delay(2000);
 
-    // TODO 8:
-    // Read temperature value from sensor
+    // Read humidity
+    float humidity = dht.readHumidity();
 
-    // TODO 9:
-    // Check if either reading failed using isnan()
-    // If failed, print error message and return
+    // Read temperature in Celsius
+    float temperature = dht.readTemperature();
 
-    // TODO 10:
-    // Print formatted temperature and humidity values
 
-    // TODO 11:
-    // Add a 2-second delay before next reading
+    // Validate readings
+    if (isnan(humidity) || isnan(temperature)) {
+        Serial.println("Error: Failed to read from DHT11 sensor.");
+        return;
+    }
+
+    // Structured output
+    Serial.println("----- Environmental Data -----");
+    
+    Serial.print("Humidity: ");
+    Serial.print(humidity);
+    Serial.println(" %");
+
+    Serial.print("Temperature: ");
+    Serial.print(temperature);
+    Serial.println(" °C");
+
+    Serial.println("------------------------------");
+
+    delay(2000);
 }
