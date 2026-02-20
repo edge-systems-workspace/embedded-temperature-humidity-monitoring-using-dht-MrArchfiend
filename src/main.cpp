@@ -21,11 +21,15 @@ void setup() {
 
 void loop() {
 
-    // TODO 7:
-    // Read humidity value from sensor
+    // Delay between readings (DHT11 requires ~1 second interval)
+    delay(2000);
 
-    // TODO 8:
-    // Read temperature value from sensor
+    // Read humidity
+    float humidity = dht.readHumidity();
+
+    // Read temperature in Celsius
+    float temperature = dht.readTemperature();
+
 
     // TODO 9:
     // Check if either reading failed using isnan()
