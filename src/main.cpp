@@ -9,14 +9,12 @@ DHT dht(DHTPIN, DHTTYPE);
 
 #include <DHT.h>
 
-// TODO 1:
-// Define the DHT data pin (Use digital pin 2)
+Serial.begin(9600);
+    dht.begin();
 
-// TODO 2:
-// Define the DHT sensor type (DHT11)
-
-// TODO 3:
-// Create a DHT object using the defined pin and sensor type
+    Serial.println("======================================");
+    Serial.println(" DHT11 Temperature & Humidity Monitor ");
+    Serial.println("======================================");
 
 void setup() {
 
